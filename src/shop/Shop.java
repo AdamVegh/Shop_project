@@ -43,4 +43,49 @@ public class Shop {
     public void loadMilk(Milk m) {
 	milkbar.put(m.getBarcode(), m);
     }
+    
+    public class ShopRegistry {
+	
+	private Milk milk;
+	private int quantity;
+	private int prize;
+
+	public ShopRegistry(Milk milk, int quantity, int prize) {
+	    this.milk = milk;
+	    this.quantity = quantity;
+	    this.prize = prize;
+	}
+
+	public Milk getMilk() {
+	    return milk;
+	}
+
+	public void setMilk(Milk milk) {
+	    this.milk = milk;
+	}
+
+	public int getQuantity() {
+	    return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+	    this.quantity = quantity;
+	}
+
+	public int getPrize() {
+	    return prize;
+	}
+
+	public void setPrize(int prize) {
+	    this.prize = prize;
+	}
+	
+	public void incrementQuantity(int q) {
+	    this.quantity += q;
+	}
+	
+	public void decrementQuantity(int q) {
+	    this.quantity -= q;
+	}
+    }
 }
