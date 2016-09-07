@@ -51,4 +51,23 @@ public class ShopTest {
 	shop = new Shop(name, address, owner, milkbar);
 	shop.buyMilk(milk1);
     }
+    
+    @Test
+    public void load_shop_with_milk_if_there_is_any_one() {
+	shop = new Shop(name, address, owner);
+	shop.buyMilk(milk1);
+	shop.buyMilk(milk2);
+	shop.buyMilk(milk3);
+	Milk newMilk = new Milk(0, "", new Date(), 0, 0);
+	shop.loadMilk(newMilk);
+	Milk boughtMilk = shop.buyMilk(newMilk);
+	assertEquals(newMilk, boughtMilk);
+    }
+    
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void load_shop_with_milk_if_there_is_not_enough_place() {
+	shop = new Shop(name, address, owner);
+	Milk newMilk = new Milk(0, "", new Date(), 0, 0);
+	shop.loadMilk(newMilk);
+    }
 }
