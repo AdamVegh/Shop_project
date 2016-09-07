@@ -1,7 +1,7 @@
 package shop;
 
 public class Shop {
-    
+
     private String name;
     private String address;
     private String owner;
@@ -13,6 +13,7 @@ public class Shop {
 	this.address = address;
 	this.owner = owner;
 	this.milkbar = milkbar;
+	flag = milkbar.length - 1;
     }
 
     public String getName() {
@@ -26,12 +27,12 @@ public class Shop {
     public String getOwner() {
 	return owner;
     }
-    
+
     public boolean isThereAnyMilk() {
-	return milkbar.length > 0;
+	return flag > 0;
     }
-    
+
     public Milk buyMilk(Milk m) {
-	return null;
+	return milkbar[flag--];
     }
 }
