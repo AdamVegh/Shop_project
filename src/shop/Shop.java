@@ -36,16 +36,20 @@ public class Shop {
 	return !milkbar.isEmpty();
     }
 
+    public void loadMilk(Milk milk, int prize) {
+	ShopRegistry shopRegistry = new ShopRegistry(milk, this.milkbar.size(), prize);
+	shopRegistry.incrementQuantity(1);
+	milkbar.put(milk.getBarcode(), shopRegistry);
+    }
+
     public Milk buyMilk(long barcode) {
-	return (Milk) milkbar.remove(barcode);
+	ShopRegistry shopRegistry = (ShopRegistry) milkbar.get(barcode);
+	shopRegistry.decrementQuantity(1);
+	return ((ShopRegistry) milkbar.remove(barcode)).getMilk();
     }
-    
-    public void loadMilk(Milk m) {
-	milkbar.put(m.getBarcode(), m);
-    }
-    
-    public class ShopRegistry {
-	
+
+    class ShopRegistry {
+
 	private Milk milk;
 	private int quantity;
 	private int prize;
@@ -79,11 +83,11 @@ public class Shop {
 	public void setPrize(int prize) {
 	    this.prize = prize;
 	}
-	
+
 	public void incrementQuantity(int q) {
 	    this.quantity += q;
 	}
-	
+
 	public void decrementQuantity(int q) {
 	    this.quantity -= q;
 	}
