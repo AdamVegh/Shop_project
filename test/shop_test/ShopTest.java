@@ -17,9 +17,9 @@ public class ShopTest {
     String address;
     String owner;
     Hashtable<Long, Milk> milkbar;
-    Milk milk1 = new Milk(1, 0, "", new Date(), 0, 0);
-    Milk milk2 = new Milk(2, 0, "", new Date(), 0, 0);
-    Milk milk3 = new Milk(3, 0, "", new Date(), 0, 0);
+    Milk milk1 = new Milk(1, 0, "", new Date(), 0);
+    Milk milk2 = new Milk(2, 0, "", new Date(), 0);
+    Milk milk3 = new Milk(3, 0, "", new Date(), 0);
     
     @Before
     public void setUp() {
@@ -30,20 +30,20 @@ public class ShopTest {
     }
     
     @Test
-    public void there_is_three_milk_in_shop() {
+    public void isThereAnyMilk_whenThreeMilkInMilkbar_ThenTrue() {
 	shop = new Shop(name, address, owner, milkbar);
 	assertTrue(shop.isThereAnyMilk());
     }
     
     @Test
-    public void there_is_not_any_milk_in_shop() {
+    public void isThereAnyMilk_whenNoMilkInMilkbar_ThenFalse() {
 	milkbar = new Hashtable<>();
 	shop = new Shop(name, address, owner, milkbar);
 	assertFalse(shop.isThereAnyMilk());
     }
     
     @Test
-    public void buy_milk_if_there_is_any() {
+    public void buyMilk_whenThereIsSomeMilk_ThenThisMilk() {
 	shop = new Shop(name, address, owner, milkbar);
 	Milk boughtMilk2 = shop.buyMilk(milk2.getBarcode());
 	assertEquals(milk2, boughtMilk2);
@@ -52,16 +52,17 @@ public class ShopTest {
     }
     
     @Test
-    public void buy_milk_if_there_is_no_one() {
+    public void buyMilk_whenNoMilk_ThenNull() {
 	milkbar = new Hashtable<>();
 	shop = new Shop(name, address, owner, milkbar);
-	assertEquals(null, shop.buyMilk(milk2.getBarcode()));
+	Milk shadowMilk = shop.buyMilk(milk2.getBarcode());
+	assertEquals(null, shadowMilk);
     }
     
     @Test
-    public void load_shop_with_milk() {
+    public void loadMilk_whenLoadMilk_ThenLastMilkIsEqualToThat() {
 	shop = new Shop(name, address, owner, milkbar);
-	Milk newMilk = new Milk(4, 0, "", new Date(), 0, 0);
+	Milk newMilk = new Milk(4, 0, "", new Date(), 0);
 	shop.loadMilk(newMilk);
 	Milk boughtMilk = shop.buyMilk(newMilk.getBarcode());
 	assertEquals(newMilk, boughtMilk);
