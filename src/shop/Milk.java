@@ -19,7 +19,7 @@ public class Milk {
     }
 
     public boolean isConsumable() {
-	return false;
+	return warrantyPeriod.after(new Date());
     }
 
     public int getVolume() {
