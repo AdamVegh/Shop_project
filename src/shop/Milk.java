@@ -18,20 +18,18 @@ public class Milk {
 	HALF_FAT = 1.5;
     }
     
-    private int volume;
-    private String maker;
-    private Date warrantyPeriod;
-    private double fatContent;
-    private long prize;
-    private long barcode;
+    protected long barcode;
+    protected int volume;
+    protected String maker;
+    protected Date warrantyPeriod;
+    protected double fatContent;
 
-    public Milk(long barcode, int volume, String maker, Date warrantyPeriod, double fatContent, long prize) {
+    public Milk(long barcode, int volume, String maker, Date warrantyPeriod, double fatContent) {
 	this.barcode = barcode;
 	this.volume = volume;
 	this.maker = maker;
 	this.warrantyPeriod = warrantyPeriod;
 	this.fatContent = fatContent;
-	this.prize = prize;
     }
 
 
@@ -55,16 +53,12 @@ public class Milk {
 	return fatContent;
     }
 
-    public long getPrize() {
-	return prize;
-    }
-
     public long getBarcode() {
 	return barcode;
     }
-    
+
     @Override
     public String toString() {
-	return "Milk{" + "volume=" + volume + ", maker=" + maker + ", warrantyPeriod=" + warrantyPeriod + ", fatContent=" + fatContent + ", prize=" + prize + '}';
+	return "Milk{" + "barcode=" + barcode + ", volume=" + volume + ", maker=" + maker + ", warrantyPeriod=" + warrantyPeriod + ", fatContent=" + fatContent + '}';
     }
 }
